@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackgroundComponent } from './background/background.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
+import { NgxParticlesModule } from '@tsparticles/angular';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PageLoaderComponent } from './page-loader/page-loader.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxParticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
