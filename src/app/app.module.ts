@@ -12,6 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SuggestionListComponent } from './wiki-container/suggestion-list/suggestion-list.component';
 import { ResultsComponent } from './wiki-container/results/results.component';
 import { SwordComponent } from './sword/sword.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SaberSwitchComponent } from './saber-switch/saber-switch.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,9 @@ import { SwordComponent } from './sword/sword.component';
     SearchBarComponent,
     SuggestionListComponent,
     ResultsComponent,
-    SwordComponent
+    SwordComponent,
+    NavbarComponent,
+    SaberSwitchComponent
   ],
   imports: [
     BrowserModule,
