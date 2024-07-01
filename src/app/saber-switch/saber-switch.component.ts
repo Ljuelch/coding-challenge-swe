@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LightsaberTriggerService } from '../services/lightsaber-trigger.service';
 
 @Component({
   selector: 'app-saber-switch',
@@ -6,9 +7,18 @@ import { Component } from '@angular/core';
   styleUrl: './saber-switch.component.scss'
 })
 export class SaberSwitchComponent {
-  saberStatus: string = "on";
+  saberStatus: string;
+
+  constructor(
+    private lightsaberTriggerService: LightsaberTriggerService
+  ){
+    this.saberStatus = this.lightsaberTriggerService.getSaberStatus();
+    this.lightsaberTriggerService.saberStatus$.subscribe(status => {
+      this.saberStatus = status;
+    });
+  }
 
   toggleSaber() {
-    this.saberStatus = this.saberStatus === "on" ? "off" : "on";
+    this.lightsaberTriggerService.toggleSaber();
   }
 }

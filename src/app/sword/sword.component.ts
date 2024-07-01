@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LightsaberTriggerService } from '../services/lightsaber-trigger.service';
 
 @Component({
   selector: 'app-sword',
@@ -6,20 +7,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './sword.component.scss'
 })
 export class SwordComponent implements OnInit {
+  constructor(private lightsaberTriggerService: LightsaberTriggerService) {}
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.clickCheckbox('on-off-left');
+      this.lightsaberTriggerService.saberStatus$.subscribe(status => {
+        if (status === 'on') {
+          this.turnOnLightsabers();
+        } else {
+          this.turnOffLightsabers();
+        }
+      });
+    }, 1600);
+
+    setTimeout(() => {
+      this.clickCheckbox('on-off-left', true);
     }, 1000);
 
     setTimeout(() => {
-      this.clickCheckbox('on-off-right');
+      this.clickCheckbox('on-off-right', true);
     }, 1500);
   }
 
-  clickCheckbox(id: string): void {
+  turnOnLightsabers() {
+    this.clickCheckbox('on-off-left', true);
+    this.clickCheckbox('on-off-right', true);
+  }
+
+  turnOffLightsabers() {
+    this.clickCheckbox('on-off-left', false);
+    this.clickCheckbox('on-off-right', false);
+  }
+
+  clickCheckbox(id: string, shouldCheck: boolean): void {
     const checkbox = document.getElementById(id) as HTMLInputElement;
-    if (checkbox) {
+    if (checkbox && checkbox.checked !== shouldCheck) {
       checkbox.click();
     }
   }
