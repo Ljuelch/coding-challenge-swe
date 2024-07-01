@@ -1,5 +1,5 @@
 <form>
-  <div class="relative items-center focus-within:opacity-100">
+  <div class="relative w-96 max-w-xl items-center focus-within:opacity-100">
     <i class="sublevel-link-icon fa fa-search absolute ml-3 mt-3 opacity-30 pointer-events-none"></i>
     <input
       type="text"
@@ -8,6 +8,8 @@
       autocomplete="off"
       aria-label="Search Wiki"
       class="
+      flex-1
+      w-full
       pl-8
       py-2
       focus:opacity-90
@@ -25,4 +27,5 @@
       focus:outline-none "
     >
   </div>
+  <app-suggestion-list></app-suggestion-list>
 </form>
