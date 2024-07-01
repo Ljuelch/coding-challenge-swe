@@ -8,7 +8,7 @@ export const particlesOptions: IParticlesProps = {
   interactivity: {
     events: {
       onClick: {
-        enable: true,
+        enable: false,
         mode: "push"
       },
       onHover: {
@@ -51,7 +51,7 @@ export const particlesOptions: IParticlesProps = {
         default: "bounce"
       },
       random: true,
-      speed: 0.3,
+      speed: 0.1,
       straight: false
     },
     number: {
@@ -60,7 +60,7 @@ export const particlesOptions: IParticlesProps = {
         width: 800,
         height: 800
       },
-      value: 90
+      value: 200
     },
     opacity: {
       value: 0.5
@@ -69,7 +69,7 @@ export const particlesOptions: IParticlesProps = {
       type: "circle"
     },
     size: {
-      value: { min: 0.5, max: 1.3 }
+      value: { min: 0.5, max: 1 }
     }
   },
   detectRetina: true
