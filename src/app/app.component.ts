@@ -5,15 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  isDisplayed: boolean = true;
+  displayLoader: boolean = true;
 
   ngOnInit() {
-    this.removeElement();
+    this.removeLoader();
   }
 
-  removeElement() {
+  removeLoader() {
     setTimeout(() => {
-        this.isDisplayed = false;
+        this.displayLoader = false;
     }, 6000);
   }
 }
