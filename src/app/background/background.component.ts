@@ -17,7 +17,7 @@ export class BackgroundComponent implements OnInit {
   ngOnInit(): void {
     this.ngParticlesService.init(async (engine) => {
       await loadFull(engine);
-    }).then(() => console.log('AFTER INIT'));
+    });
   }
 
   particlesLoaded(container: Container): void {

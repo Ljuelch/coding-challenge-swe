@@ -11,6 +11,7 @@ import { SearchBarComponent } from './wiki-container/search-bar/search-bar.compo
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SuggestionListComponent } from './wiki-container/suggestion-list/suggestion-list.component';
 import { ResultsComponent } from './wiki-container/results/results.component';
+import { SwordComponent } from './sword/sword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { ResultsComponent } from './wiki-container/results/results.component';
     WikiContainerComponent,
     SearchBarComponent,
     SuggestionListComponent,
-    ResultsComponent
+    ResultsComponent,
+    SwordComponent
   ],
   imports: [
     BrowserModule,

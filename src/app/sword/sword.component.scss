@@ -1,0 +1,191 @@
+:root {
+  --blade-hue: 120;
+  --blade-lightness: 50%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #222;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Lightsaber container */
+.lightsaber-container {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.lightsaber {
+  position: relative;
+  pointer-events: auto;
+}
+
+.left-lightsaber {
+  left: 0;
+  margin-left: 8%;
+  transform-origin: bottom left;
+  transform: rotate(+20deg);
+}
+
+.right-lightsaber {
+  right: 0;
+  margin-right: 8%;
+  transform-origin: bottom right;
+  transform: rotate(-20deg);
+}
+
+#on-off-left, #on-off-right {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.hilt {
+  cursor: pointer;
+  display: block;
+  width: 0.75rem;
+  height: 7rem;
+  background-color: red;
+  border-radius: 0 0 4px 4px;
+  background-image: linear-gradient(
+    to bottom,
+    silver 0px,
+    silver 10px,
+    hsl(39, 75%, 50%) 10px,
+    hsl(39, 75%, 50%) 14px,
+    silver 14px,
+    silver 15px,
+    black 15px,
+    black 20px,
+    silver 20px,
+    silver 22px,
+    black 22px,
+    black 25px,
+    silver 25px,
+    silver 27px,
+    black 27px,
+    black 30px,
+    silver 30px,
+    silver 32px,
+    black 32px,
+    black 35px,
+    silver 35px,
+    silver 37px,
+    black 37px,
+    black 40px,
+    silver 40px,
+    silver 42px,
+    black 42px,
+    black 45px,
+    silver 45px,
+    silver 47px,
+    black 47px,
+    black 50px,
+    silver 50px,
+    silver 60px,
+    hsl(39, 75%, 50%) 60px,
+    hsl(39, 75%, 50%) 80px,
+    silver 80px,
+    silver 100%
+  );
+}
+
+.blade-sets {
+  position: absolute;
+  background: white;
+  height: 350%;
+  width: 100%;
+  bottom: 100%;
+  border-radius: 100vw 100vw 0 0;
+  box-shadow: inset 0 0 4px
+      hsl(var(--blade-hue) 100% var(--blade-lightness) / 1),
+    0 0 1em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.8),
+    0 0 1.5em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.7),
+    0 0 2em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.5),
+    0 0 3em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.3),
+    0 0 5em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.2);
+  transition: transform 50ms ease-out;
+  transform-origin: bottom;
+}
+
+.blade::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: red;
+  border-radius: inherit;
+  filter: blur(0.6em);
+  opacity: 1;
+  animation: pulse linear 3s infinite;
+}
+
+.blade-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1e98bd;
+  border-radius: inherit;
+  filter: blur(0.6em);
+  opacity: 1;
+  animation: pulse linear 3s infinite;
+}
+
+.blade::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #8c1b1b;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+.blade-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #1e98bd;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+#on-off-left:not(:checked) + .blade,
+#on-off-right:not(:checked) + .blade-right {
+  transform: scaleY(0);
+}
+
+#on-off-left:checked + .blade,
+#on-off-right:checked + .blade-right {
+  transform: scaleY(1);
+}

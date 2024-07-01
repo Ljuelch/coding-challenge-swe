@@ -1,8 +1,9 @@
 <app-background></app-background>
 <!--<app-page-loader *ngIf="displayLoader"></app-page-loader>-->
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center relative">
   <app-wiki-container *ngIf="displayContent"></app-wiki-container>
 </div>
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center relative">
   <app-results *ngIf="displayContent"></app-results>
 </div>
+<app-sword></app-sword>
