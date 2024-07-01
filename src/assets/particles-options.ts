@@ -51,7 +51,7 @@ export const particlesOptions: IParticlesProps = {
         default: "bounce"
       },
       random: true,
-      speed: 0.1,
+      speed: 0.2,
       straight: false
     },
     number: {
