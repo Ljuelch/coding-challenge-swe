@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BackgroundComponent } from './background/background.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { NgxParticlesModule } from '@tsparticles/angular';
+import { WikiContainerComponent } from './wiki-container/wiki-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackgroundComponent,
-    PageLoaderComponent
+    PageLoaderComponent,
+    WikiContainerComponent
   ],
   imports: [
     BrowserModule,
