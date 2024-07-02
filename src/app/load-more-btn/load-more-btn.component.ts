@@ -6,14 +6,10 @@ import { ResultsFetcherService } from '../services/results-fetcher.service';
   templateUrl: './load-more-btn.component.html',
   styleUrl: './load-more-btn.component.scss'
 })
-export class LoadMoreBtnComponent implements OnInit {
+export class LoadMoreBtnComponent{
 
   @Output() loadMoreClicked: EventEmitter<void> = new EventEmitter<void>();
   @Input() loading: boolean = false;
-  constructor(private resultService: ResultsFetcherService) { }
-
-  ngOnInit(): void {
-  }
 
   loadMore(): void {
     this.loading = true;
