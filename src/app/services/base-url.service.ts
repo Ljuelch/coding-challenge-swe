@@ -9,7 +9,7 @@ export class BaseUrlService {
   endpointBaseUrl = `https://www.swapi.tech/api`;
   constructor(private http: HttpClient) {}
 
-  getEndpoint(): Observable<unknown> {
+  getBaseEP(): Observable<unknown> {
     return this.http.get(this.endpointBaseUrl);
   }
 }
