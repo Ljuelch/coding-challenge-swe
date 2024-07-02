@@ -1,4 +1,3 @@
-// results.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Person } from '../interfaces/person';
 import { Subscription, forkJoin, of, tap } from 'rxjs';
@@ -18,7 +17,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   private page: number = 1;
   private pageSize: number = 10;
-  private planetCache: { [url: string]: any } = {}; // Cache for planet details
+  private planetCache: { [url: string]: any } = {};
 
   constructor(private resultService: ResultsFetcherService) {}
 
@@ -33,7 +32,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
         (people: Person[]) => {
           this.people = [...this.people, ...people];
           this.loadMoreDetails();
-          this.allDataLoaded = false; // Reset allDataLoaded flag
+          this.allDataLoaded = false;
         },
         error => {
           console.error('Error fetching people:', error);
@@ -75,10 +74,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
       .map(person => {
         const url = person.result.homeworld;
         if (this.planetCache[url]) {
-          return of(this.planetCache[url]); // Use cached data if available
+          return of(this.planetCache[url]);
         }
         return this.resultService.fetchPlanetDetails(url).pipe(
-          tap(planet => this.planetCache[url] = planet) // Cache the data
+          tap(planet => this.planetCache[url] = planet)
         );
       });
 
