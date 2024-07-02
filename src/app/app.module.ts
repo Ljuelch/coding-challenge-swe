@@ -14,6 +14,7 @@ import { ResultsComponent } from './wiki-container/results/results.component';
 import { SwordComponent } from './sword/sword.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SaberSwitchComponent } from './saber-switch/saber-switch.component';
+import { NgOptimizedImage } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { SaberSwitchComponent } from './saber-switch/saber-switch.component';
     BrowserModule,
     AppRoutingModule,
     NgxParticlesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
