@@ -1,0 +1,17 @@
+.suggestion-item {
+  color: white;
+  padding: 0.5rem 2rem;
+}
+
+.suggestion-item:hover {
+  background-color: gray;
+}
+
+.suggestion-container {
+  z-index: 9999;
+  position: absolute;
+}
+
+.bg-custom-gray {
+  background-color: #3f4042;
+}

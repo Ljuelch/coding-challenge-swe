@@ -9,7 +9,7 @@ import { NgxParticlesModule } from '@tsparticles/angular';
 import { WikiContainerComponent } from './wiki-container/wiki-container.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SuggestionListComponent } from './wiki-container/suggestion-list/suggestion-list.component';
+import { SuggestionListComponent } from './suggestion-list/suggestion-list.component';
 import { ResultsComponent } from './wiki-container/results/results.component';
 import { SwordComponent } from './sword/sword.component';
 import { NavbarComponent } from './navbar/navbar.component';
