@@ -16,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SaberSwitchComponent } from './saber-switch/saber-switch.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ResultsComponent,
     SwordComponent,
     NavbarComponent,
-    SaberSwitchComponent
+    SaberSwitchComponent,
+    LoadMoreBtnComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

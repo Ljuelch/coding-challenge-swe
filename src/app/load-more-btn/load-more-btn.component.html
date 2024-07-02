@@ -1,0 +1,8 @@
+<button *ngIf="!loading" (click)="loadMore()" class="relative px-4 py-2 bg-gray-600 border-gray-600 border-2 rounded-full overflow-hidden
+  transition duration-300 ease-in-out transform hover:bg-gray-300 hover:text-black">
+  <span class="hover:text-black z-10">Load More</span>
+</button>
+
+<div *ngIf="loading" class="relative px-4 py-2 bg-gray-600 border-gray-600 border-2 rounded-full overflow-hidden">
+  <app-loading-spinner></app-loading-spinner>
+</div>

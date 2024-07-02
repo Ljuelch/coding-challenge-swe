@@ -9,43 +9,67 @@ import { ResultsFetcherService } from '../../services/results-fetcher.service';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit, OnDestroy {
-  people: any[] = [];
-  detailedPeople: any[] = []; // To store detailed information
-  dataLoaded: boolean = false; // Flag to indicate if data loading is complete
+  people: Person[] = [];
+  detailedPeople: any[] = [];
+  dataLoaded: boolean = false;
+  loading: boolean = false;
+  allDataLoaded: boolean = false;
   private subscription: Subscription = new Subscription();
+  private page: number = 1;
+  private pageSize: number = 10;
 
   constructor(private resultService: ResultsFetcherService) {}
 
   ngOnInit(): void {
-    this.fetchPeople();
+    this.loadMorePeople();
   }
 
-  fetchPeople(): void {
-    this.subscription = this.resultService.fetchPeople().subscribe(
-      (people: any[]) => {
-        console.log('Fetched people:', people); // Log the fetched people
-        this.people = people;
+  loadMorePeople(): void {
+    this.loading = true;
+    this.subscription.add(
+      this.resultService.fetchPeople(this.page, this.pageSize).subscribe(
+        (people: Person[]) => {
+          console.log('Fetched people:', people);
+          this.people = [...this.people, ...people];
+          this.loadMoreDetails();
+        },
+        error => {
+          console.error('Error fetching people:', error);
+        }
+      )
+    );
+  }
 
-        // Prepare an array of observables for fetching details
-        const detailObservables = people
-          .filter(person => person.result && person.result.uid)
-          .map(person => this.resultService.fetchPersonDetails(person.result.uid));
+  loadMoreDetails(): void {
+    const start = (this.page - 1) * this.pageSize;
+    const end = this.page * this.pageSize;
+    const peopleToLoad = this.people.slice(start, end);
 
-        // Use forkJoin to wait for all detail fetches to complete
-        forkJoin(detailObservables).subscribe(
-          (detailedPeople: any[]) => {
-            this.detailedPeople = detailedPeople;
-            this.dataLoaded = true; // Set dataLoaded to true once data is loaded
-            console.log('All detailed people:', this.detailedPeople); // Log all detailed people
-            console.log('Length of detailed people:', this.detailedPeople.length); // Log the length of detailed people array
-          },
-          error => {
-            console.error('Error fetching detailed people:', error);
-          }
-        );
+    if (peopleToLoad.length === 0) {
+      this.allDataLoaded = true;
+      this.loading = false;
+      return;
+    }
+
+    const detailObservables = peopleToLoad
+      .filter(person => person.result && person.result.uid)
+      .map(person => this.resultService.fetchPersonDetails(person.result.uid));
+
+    forkJoin(detailObservables).subscribe(
+      (detailedPeople: any[]) => {
+        this.detailedPeople = [...this.detailedPeople, ...detailedPeople];
+        this.dataLoaded = true;
+        this.page++;
+        if (this.detailedPeople.length >= this.people.length) {
+          this.allDataLoaded = true;
+        }
+        this.loading = false;
+        console.log('All detailed people:', this.detailedPeople);
+        console.log('Length of detailed people:', this.detailedPeople.length);
       },
       error => {
-        console.error('Error fetching people:', error);
+        console.error('Error fetching detailed people:', error);
+        this.loading = false;
       }
     );
   }

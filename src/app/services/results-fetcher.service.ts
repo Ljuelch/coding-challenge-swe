@@ -1,5 +1,3 @@
-
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -14,11 +12,11 @@ export class ResultsFetcherService {
 
   constructor(private http: HttpClient) {}
 
-  fetchPeople(): Observable<Person[]> {
-    const url = `${this.baseUrl}/people`;
+  fetchPeople(page: number, pageSize: number): Observable<Person[]> {
+    const url = `${this.baseUrl}/people?page=${page}&limit=${pageSize}`;
     return this.http.get<any>(url).pipe(
       map(response => {
-        console.log('Fetch people response:', response); // Log the response
+        console.log('Fetch people response:', response);
         return response.results.map((result: any) => ({
           result: {
             uid: result.uid,
@@ -28,7 +26,7 @@ export class ResultsFetcherService {
         }));
       }),
       catchError(error => {
-        console.error('Error fetching people:', error); // Log the error
+        console.error('Error fetching people:', error);
         return throwError(error);
       })
     );
@@ -48,10 +46,9 @@ export class ResultsFetcherService {
         }
       })),
       catchError(error => {
-        console.error(`Error fetching person details for ID ${id}:`, error); // Log the error
+        console.error(`Error fetching person details for ID ${id}:`, error);
         return throwError(error);
       })
     );
   }
 }
-
