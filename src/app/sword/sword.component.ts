@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { LightsaberTriggerService } from '../services/lightsaber-trigger.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { LightsaberTriggerService } from '../services/lightsaber-trigger.service
 export class SwordComponent implements OnInit {
   constructor(private lightsaberTriggerService: LightsaberTriggerService) {}
 
+  isScrolled = false;
   ngOnInit(): void {
     setTimeout(() => {
       this.lightsaberTriggerService.saberStatus$.subscribe(status => {
@@ -44,5 +45,12 @@ export class SwordComponent implements OnInit {
     if (checkbox && checkbox.checked !== shouldCheck) {
       checkbox.click();
     }
+  }
+  @HostListener('window:scroll', [])
+    onWindowScroll(): void {
+    this.isScrolled = true;
+    setTimeout(() => {
+      this.isScrolled = false;
+    }, 500);
   }
 }

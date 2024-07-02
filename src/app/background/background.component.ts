@@ -31,7 +31,7 @@ export class BackgroundComponent implements OnInit {
           setTimeout(() => {
             this.disappearSpaceship = true;
           }, 30);
-        }, 1000);
+        }, 1800);
       }, 1500);
     }, 6100);
   }

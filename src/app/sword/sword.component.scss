@@ -1,4 +1,3 @@
-// Define variables for blade animation timing
 $transition-duration: 0.5s;
 $animation-duration: 4s;
 
@@ -21,9 +20,8 @@ body {
   padding: 0;
 }
 
-/* Lightsaber container */
 .lightsaber-container {
-  position: absolute;
+  position: fixed;
   top: 70%;
   left: 0;
   width: 100%;
@@ -31,6 +29,14 @@ body {
   display: flex;
   justify-content: space-between;
   pointer-events: none;
+}
+
+.scroll-activated .right-lightsaber {
+  animation: pulse 0.1s linear infinite, shake-right 0.1s infinite;
+}
+
+.scroll-activated .left-lightsaber {
+  animation: pulse 0.1s linear infinite, shake-left 0.1s infinite;
 }
 
 .lightsaber {
@@ -140,6 +146,11 @@ body {
   animation: pulse linear $animation-duration infinite;
 }
 
+.scroll-activated .blade::after,
+.scroll-activated .blade-right::after {
+  animation: pulse 0.2s linear infinite;
+}
+
 .blade-right::after {
   content: "";
   position: absolute;
@@ -181,6 +192,30 @@ body {
 @keyframes pulse {
   50% {
     opacity: 0.5;
+  }
+}
+
+@keyframes shake-left {
+  0%, 100% {
+    transform: rotate(20deg);
+  }
+  25% {
+    transform: rotate(19.5deg);
+  }
+  75% {
+    transform: rotate(20.5deg);
+  }
+}
+
+@keyframes shake-right {
+  0%, 100% {
+    transform: rotate(-20deg);
+  }
+  25% {
+    transform: rotate(-20.5deg);
+  }
+  75% {
+    transform: rotate(-19.5deg);
   }
 }
 
