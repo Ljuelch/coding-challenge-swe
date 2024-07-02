@@ -1,3 +1,7 @@
+// Define variables for blade animation timing
+$transition-duration: 0.5s;
+$animation-duration: 4s;
+
 :root {
   --blade-hue: 120;
   --blade-lightness: 50%;
@@ -36,14 +40,14 @@ body {
 
 .left-lightsaber {
   left: 0;
-  margin-left: 8%;
+  margin-left: 14%;
   transform-origin: bottom left;
   transform: rotate(+20deg);
 }
 
 .right-lightsaber {
   right: 0;
-  margin-right: 8%;
+  margin-right: 14%;
   transform-origin: bottom right;
   transform: rotate(-20deg);
 }
@@ -118,7 +122,7 @@ body {
     0 0 2em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.5),
     0 0 3em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.3),
     0 0 5em hsl(var(--blade-hue) 100% var(--blade-lightness) / 0.2);
-  transition: transform 50ms ease-out;
+  transition: transform $transition-duration ease-out;
   transform-origin: bottom;
 }
 
@@ -133,7 +137,7 @@ body {
   border-radius: inherit;
   filter: blur(0.6em);
   opacity: 1;
-  animation: pulse linear 3s infinite;
+  animation: pulse linear $animation-duration infinite;
 }
 
 .blade-right::after {
@@ -147,7 +151,7 @@ body {
   border-radius: inherit;
   filter: blur(0.6em);
   opacity: 1;
-  animation: pulse linear 2s infinite;
+  animation: pulse linear $animation-duration infinite;
 }
 
 .blade::before {
