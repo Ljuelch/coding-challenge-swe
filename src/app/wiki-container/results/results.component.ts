@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './results.component.scss'
 })
 export class ResultsComponent {
-
+  birthday: string = '19 BBY';
+  homePlanet: string = 'Tatooine';
+  terrain: string = 'Desert';
 }
