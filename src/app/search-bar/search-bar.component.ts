@@ -13,7 +13,6 @@ export class SearchBarComponent {
   constructor(private suggestionService: SuggestionService) {}
 
   search() {
-    console.log('Performing search with text:', this.searchText);
     this.hideSuggestions();
   }
 

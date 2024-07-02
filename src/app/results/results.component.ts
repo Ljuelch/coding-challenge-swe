@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Person } from '../../interfaces/person';
+import { Person } from '../interfaces/person';
 import { Subscription, forkJoin } from 'rxjs';
-import { ResultsFetcherService } from '../../services/results-fetcher.service';
+import { ResultsFetcherService } from '../services/results-fetcher.service';
 
 @Component({
   selector: 'app-results',
@@ -29,7 +29,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.resultService.fetchPeople(this.page, this.pageSize).subscribe(
         (people: Person[]) => {
-          console.log('Fetched people:', people);
           this.people = [...this.people, ...people];
           this.loadMoreDetails();
         },
@@ -64,8 +63,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
           this.allDataLoaded = true;
         }
         this.loading = false;
-        console.log('All detailed people:', this.detailedPeople);
-        console.log('Length of detailed people:', this.detailedPeople.length);
       },
       error => {
         console.error('Error fetching detailed people:', error);

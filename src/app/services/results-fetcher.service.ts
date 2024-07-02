@@ -16,7 +16,6 @@ export class ResultsFetcherService {
     const url = `${this.baseUrl}/people?page=${page}&limit=${pageSize}`;
     return this.http.get<any>(url).pipe(
       map(response => {
-        console.log('Fetch people response:', response);
         return response.results.map((result: any) => ({
           result: {
             uid: result.uid,
