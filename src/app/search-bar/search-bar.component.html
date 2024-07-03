@@ -1,7 +1,9 @@
 <form class="relative">
   <div class="relative w-96 max-w-xl items-center">
     <i class="sublevel-link-icon fa fa-search absolute ml-3 mt-3 opacity-30 pointer-events-none"></i>
+    <i *ngIf="searchText" (click)="clearSearch()" class="sublevel-link-icon fa fa-x absolute ml-88 mt-3 opacity-30 cursor-pointer"></i>
     <input
+      #searchInput
       type="text"
       name="search"
       placeholder="Search Wiki"
@@ -27,7 +29,7 @@
         focus:outline-none
       "
       [(ngModel)]="searchText"
-      (keyup.enter)="search()"
+      (keyup.enter)="search(searchInput)"
       (input)="onInput($event)"
       (focus)="showSuggestions = true"
       (blur)="hideSuggestions()"

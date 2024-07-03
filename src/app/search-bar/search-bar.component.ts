@@ -16,10 +16,11 @@ export class SearchBarComponent {
     private searchService: SearchService
   ) {}
 
-  search() {
-    if (this.searchText.trim() !== '') {
-      this.searchService.setSearchQuery(this.searchText.trim());
-      this.hideSuggestions();
+  search(inputElement?: HTMLInputElement) {
+    this.searchService.setSearchQuery(this.searchText.trim());
+    this.hideSuggestions();
+    if (inputElement) {
+      inputElement.blur();
     }
   }
 
@@ -40,5 +41,10 @@ export class SearchBarComponent {
   hideSuggestions() {
     this.showSuggestions = false;
     this.suggestionService.updateSuggestions([]);
+  }
+
+  clearSearch() {
+    this.searchText = '';
+    this.search();
   }
 }

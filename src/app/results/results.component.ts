@@ -27,16 +27,14 @@ export class ResultsComponent implements OnInit, OnDestroy {
     this.loadMorePeople();
     this.subscription.add(
       this.searchService.searchQuery$.subscribe(query => {
-        if (query) {
-          this.searchPeopleByName(query);
-        }
+        this.searchPeopleByName(query);
       })
     );
   }
 
   public get pageSizeCounter(): number {
-  return this.pageSize;
-}
+    return this.pageSize;
+  }
 
   loadMorePeople(): void {
     this.loading = true;
@@ -115,6 +113,12 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   searchPeopleByName(name: string): void {
+    if (name.trim() === '') {
+      this.resetSearch();
+      this.loadMorePeople();
+      return;
+    }
+
     this.loading = true;
     this.subscription.add(
       this.resultService.fetchPeopleByName(name).subscribe(
@@ -130,6 +134,15 @@ export class ResultsComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+  private resetSearch(): void {
+    this.people = [];
+    this.detailedPeople = [];
+    this.page = 1;
+    this.dataLoaded = false;
+    this.allDataLoaded = false;
+    this.planetCache = {};
   }
 
   ngOnDestroy(): void {
