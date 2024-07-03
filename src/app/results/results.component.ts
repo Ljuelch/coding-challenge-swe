@@ -32,6 +32,24 @@ export class ResultsComponent implements OnInit, OnDestroy {
     );
   }
 
+  formatTerrain(terrain: string): string {
+    if (!terrain) return '';
+
+    const segments = terrain.split(',');
+
+    const capitalizedSegments = segments.map(segment => {
+      const words = segment.trim().split(' ');
+      const capitalizedWords = words.map(word => this.capitalizeFirstLetter(word));
+      return capitalizedWords.join(' ');
+    });
+
+    return capitalizedSegments.join(', ');
+  }
+
+  capitalizeFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
   public get pageSizeCounter(): number {
     return this.pageSize;
   }
