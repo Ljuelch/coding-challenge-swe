@@ -34,6 +34,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
     );
   }
 
+  public get pageSizeCounter(): number {
+  return this.pageSize;
+}
+
   loadMorePeople(): void {
     this.loading = true;
     this.subscription.add(

@@ -28,6 +28,6 @@
   <p>No people found</p>
 </div>
 
-<div class="text-center hover:text-black mt-4 mb-7">
+<div class="text-center hover:text-black mt-4 mb-7" *ngIf="detailedPeople.length >= pageSizeCounter">
   <app-load-more-btn [loading]="loading" (loadMoreClicked)="loadMorePeople()"></app-load-more-btn>
 </div>
