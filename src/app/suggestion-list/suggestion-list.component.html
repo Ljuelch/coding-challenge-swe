@@ -2,7 +2,8 @@
   <ul class="py-2">
     <li
       *ngFor="let suggestion of suggestions"
-      class="suggestion-item cursor-pointer hover:bg-gray-300 py-2 px-8 text-white">
+      class="suggestion-item cursor-pointer hover:bg-gray-300 py-2 px-8 text-white"
+      (click)="selectSuggestion(suggestion)">
         {{ suggestion }}
     </li>
   </ul>

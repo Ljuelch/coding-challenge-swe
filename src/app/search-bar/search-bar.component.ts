@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 import { SuggestionService } from '../services/suggestion.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss'
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
   showSuggestions = false;
   searchText = '';
 
-  constructor(private suggestionService: SuggestionService) {}
+  constructor(
+    private suggestionService: SuggestionService,
+    private searchService: SearchService
+  ) {}
 
   search() {
+    this.searchService.setSearchQuery(this.searchText);
     this.hideSuggestions();
   }
 
@@ -21,9 +26,10 @@ export class SearchBarComponent {
     const inputValue = inputElement.value.trim();
 
     if (inputValue.length > 0) {
-      const suggestions = ['Suggestion 1', 'Suggestion 2', 'Suggestion 3'];
-      this.suggestionService.updateSuggestions(suggestions);
-      this.showSuggestions = true;
+      this.suggestionService.fetchSuggestions(inputValue).subscribe(suggestions => {
+        this.suggestionService.updateSuggestions(suggestions);
+        this.showSuggestions = true;
+      });
     } else {
       this.hideSuggestions();
     }

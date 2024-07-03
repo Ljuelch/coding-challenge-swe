@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Person } from '../interfaces/person';
-import { Subscription, forkJoin, of, tap } from 'rxjs';
+import { forkJoin, of, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResultsFetcherService } from '../services/results-fetcher.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-results',
@@ -19,10 +21,17 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private pageSize: number = 10;
   private planetCache: { [url: string]: any } = {};
 
-  constructor(private resultService: ResultsFetcherService) {}
+  constructor(private resultService: ResultsFetcherService, private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.loadMorePeople();
+    this.subscription.add(
+      this.searchService.searchQuery$.subscribe(query => {
+        if (query) {
+          this.searchPeopleByName(query);
+        }
+      })
+    );
   }
 
   loadMorePeople(): void {
@@ -98,6 +107,24 @@ export class ResultsComponent implements OnInit, OnDestroy {
         console.error('Error fetching planet details:', error);
         this.loading = false;
       }
+    );
+  }
+
+  searchPeopleByName(name: string): void {
+    this.loading = true;
+    this.subscription.add(
+      this.resultService.fetchPeopleByName(name).subscribe(
+        (people: Person[]) => {
+          this.people = people;
+          this.detailedPeople = [];
+          this.page = 1;
+          this.loadMoreDetails();
+        },
+        error => {
+          console.error('Error searching people:', error);
+          this.loading = false;
+        }
+      )
     );
   }
 
