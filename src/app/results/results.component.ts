@@ -55,16 +55,23 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   loadMorePeople(): void {
+    if (this.loading || this.allDataLoaded) return;
+
     this.loading = true;
     this.subscription.add(
       this.resultService.fetchPeople(this.page, this.pageSize).subscribe(
         (people: Person[]) => {
+          if (people.length === 0) {
+            this.allDataLoaded = true;
+            this.loading = false;
+            return;
+          }
           this.people = [...this.people, ...people];
           this.loadMoreDetails();
-          this.allDataLoaded = false;
         },
         error => {
           console.error('Error fetching people:', error);
+          this.loading = false;
         }
       )
     );
@@ -88,7 +95,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
     forkJoin(detailObservables).subscribe(
       (detailedPeople: any[]) => {
         this.detailedPeople = [...this.detailedPeople, ...detailedPeople];
-        this.loadPlanetDetails();
+        this.loadPlanetDetails(detailedPeople);
       },
       error => {
         console.error('Error fetching detailed people:', error);
@@ -97,8 +104,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
     );
   }
 
-  loadPlanetDetails(): void {
-    const planetObservables = this.detailedPeople
+  loadPlanetDetails(detailedPeople: any[]): void {
+    const planetObservables = detailedPeople
       .filter(person => person.result.homeworld)
       .map(person => {
         const url = person.result.homeworld;
@@ -112,15 +119,12 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
     forkJoin(planetObservables).subscribe(
       (planetDetails: any[]) => {
-        this.detailedPeople.forEach(person => {
+        detailedPeople.forEach(person => {
           const url = person.result.homeworld;
           person.planetDetails = this.planetCache[url];
         });
         this.dataLoaded = true;
         this.page++;
-        if (this.detailedPeople.length >= this.people.length) {
-          this.allDataLoaded = true;
-        }
         this.loading = false;
       },
       error => {

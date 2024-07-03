@@ -8,6 +8,9 @@ module.exports = {
       margin: {
         '88': '22.3rem',
       },
+      screens: {
+        'lg-1500-hidden': '1500px',
+      },
     },
   },
   plugins: [],

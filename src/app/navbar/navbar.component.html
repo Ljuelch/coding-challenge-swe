@@ -1,11 +1,14 @@
 <nav class="bg-black p-4">
   <div class="mx-auto flex justify-between items-center">
-    <a routerLink="/" routerLinkActive="text-white" class="text-center cursor-pointer text-gray-300 hover:text-white transition duration-300 ml-4">
+    <a
+      routerLink="/"
+      routerLinkActive="text-white"
+      class="text-center cursor-pointer text-gray-300 hover:text-white transition duration-300 ml-4 hidden md:block">
       May the force be <br> with my job application
     </a>
-    <div class="flex items-center justify-center flex-2">
+    <div class="flex items-center justify-center flex-2 w-full md:w-auto">
       <app-search-bar></app-search-bar>
     </div>
-    <app-saber-switch></app-saber-switch>
+    <app-saber-switch class="ml-4 hidden md:block"></app-saber-switch>
   </div>
 </nav>
