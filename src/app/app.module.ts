@@ -16,6 +16,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FontAwesomeModule,
     NgOptimizedImage,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
