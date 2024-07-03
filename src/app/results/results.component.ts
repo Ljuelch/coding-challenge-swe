@@ -1,9 +1,9 @@
-import { Person } from '../interfaces/person';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { forkJoin, of, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResultsFetcherService } from '../services/results-fetcher.service';
 import { SearchService } from '../services/search.service';
+import { Person } from '../interfaces/person';
 
 @Component({
   selector: 'app-results',

@@ -26,6 +26,7 @@
         focus:border-b-2
         focus:outline-none
       "
+      [(ngModel)]="searchText"
       (keyup.enter)="search()"
       (input)="onInput($event)"
       (focus)="showSuggestions = true"

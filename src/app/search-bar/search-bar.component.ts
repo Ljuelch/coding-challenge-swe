@@ -17,8 +17,10 @@ export class SearchBarComponent {
   ) {}
 
   search() {
-    this.searchService.setSearchQuery(this.searchText);
-    this.hideSuggestions();
+    if (this.searchText.trim() !== '') {
+      this.searchService.setSearchQuery(this.searchText.trim());
+      this.hideSuggestions();
+    }
   }
 
   onInput(event: Event) {

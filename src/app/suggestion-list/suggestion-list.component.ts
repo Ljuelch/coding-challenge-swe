@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { SuggestionService } from '../services/suggestion.service';
-import { Subscription } from 'rxjs';
 import { SearchService } from '../services/search.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-suggestion-list',
@@ -11,6 +11,8 @@ import { SearchService } from '../services/search.service';
 export class SuggestionListComponent implements OnDestroy {
   suggestions: string[] = [];
   private subscription: Subscription;
+
+  @Output() suggestionSelected = new EventEmitter<string>();
 
   constructor(
     private suggestionService: SuggestionService,
@@ -26,6 +28,7 @@ export class SuggestionListComponent implements OnDestroy {
   }
 
   selectSuggestion(suggestion: string) {
+    console.log('Suggestion clicked:', suggestion);
     this.searchService.setSearchQuery(suggestion);
     this.suggestionService.updateSuggestions([]);
   }
