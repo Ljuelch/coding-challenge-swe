@@ -102,7 +102,8 @@ export class ResultsFetcherService {
               }
             };
           }),
-          tap(person => this.cachingService.addToCache(cacheKey, person)),
+          tap(person =>
+            this.cachingService.addToCache(cacheKey, person)),
           catchError(error => {
             console.error('Error fetching person details:', error);
             return throwError(error);

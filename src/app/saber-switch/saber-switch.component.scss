@@ -1,6 +1,7 @@
 .toggle-bg:after {
     content: '';
-    @apply absolute top-0.5 left-0.5 bg-gray-400 border border-gray-300 rounded-full h-5 w-5 transition shadow-sm;
+    @apply absolute top-0.5 left-0.5 bg-gray-400
+    border border-gray-300 rounded-full h-5 w-5 transition shadow-sm;
 }
 input:checked + .toggle-bg:after {
     transform: translateX(100%);

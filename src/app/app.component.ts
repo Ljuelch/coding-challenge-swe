@@ -9,10 +9,6 @@ export class AppComponent implements OnInit {
   displayContent: boolean = false;
 
   ngOnInit() {
-    this.removeLoader();
-  }
-
-  removeLoader() {
     setTimeout(() => {
         this.displayLoader = false;
     }, 6000);
