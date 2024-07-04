@@ -4,6 +4,7 @@
   - The project is hosted on GitHub Pages for easy access. You can view the live demo here: [Coding Challenge SWE](https://ljuelch.github.io/coding-challenge-swe/).
 
 - **Browser Compatibility**:
+  - For whatever reason the fontawesome Icon for Search is not displayed by github-pages. If you want to see it, host the application locally.
   - This Project has been developed using chrome (Version 126.0.6478.127 (Official Build) (arm64)).
   - It was tested in Firefox.
   - For other browsers, it's not guaranteed that the App will work properly.
