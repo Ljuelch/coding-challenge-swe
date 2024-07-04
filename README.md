@@ -1,5 +1,33 @@
 # Coding Challenge [SWE] @ Memberspot
 
+- **Live Demo**:
+  - The project is hosted on GitHub Pages for easy access. You can view the live demo here: [Coding Challenge SWE](https://ljuelch.github.io/coding-challenge-swe/).
+
+- **Browser Compatibility**:
+  - This Project has been developed using chrome (Version 126.0.6478.127 (Official Build) (arm64)).
+  - It was tested in Firefox.
+  - For other browsers, it's not guaranteed that the App will work properly.
+
+
+## How to Start the Application
+
+To start the application, follow these steps:
+
+1. **Install Dependencies**:
+   - Run `npm install` to install all necessary dependencies.
+   - If you encounter any errors during installation, use `npm install --force` to resolve potential version conflicts.
+
+2. **Start the Application**:
+   - Use the command `npm start` to start the application. This command is defined in the `package.json` file as `"start": "ng serve"`.
+
+### Important Notes
+
+- **Image Display Issues**:
+  - If images are not displayed, it might be due to hosting restrictions on GitHub Pages. Images are hosted externally to avoid this issue. If you compile the project locally and images still do not load, please contact me, and I will re-integrate them into the project asset folder.
+
+- **Tests**:
+  - Because I will not further develop this project and will not change components and services in the future i left out the tests.
+
 ## Incentive
 
 This task will cover a few core concepts that you will encounter when working on a TypeScript project at Memberspot.
